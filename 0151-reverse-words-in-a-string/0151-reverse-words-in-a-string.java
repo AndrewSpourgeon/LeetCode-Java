@@ -7,6 +7,7 @@ class Solution {
              while(i < len && s.charAt(i) == ' '){
                  i = i + 1;
              }
+            if(i >= len) break;
              int j = i;
             while( j < len && s.charAt(j) != ' ' ){
                 j = j + 1;
@@ -21,6 +22,6 @@ class Solution {
             }
             i = j + 1;
         }
-        return res.trim();
+        return res;
     }
 }
