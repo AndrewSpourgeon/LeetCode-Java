@@ -3,12 +3,12 @@ class Solution {
         if(n == 1){
             return "1";
         }
-        if(n == 2){
-            return "11";
-        }
-        if(n == 3){
-            return "21";
-        }   
+        // if(n == 2){
+        //     return "11";
+        // }
+        // if(n == 3){
+        //     return "21";
+        // }   
         String temp = countAndSay(n-1);
         String ans = say(temp);
         return ans;
