@@ -3,12 +3,16 @@ class Solution {
         int m = s.length();
         int n = t.length();
         if(m != n) return false;
+        int[] char_counts = new int[26];
+        for(int i = 0 ; i < m ; i++){
+            char_counts[s.charAt(i) - 'a']++;
+            char_counts[t.charAt(i) - 'a']--;
+        }
         
-        char[] s1 = s.toCharArray();
-        char[] t1 = t.toCharArray();
-        Arrays.sort(s1);
-        Arrays.sort(t1);
+        for(int val : char_counts){
+            if(val != 0) return false;
+        }
         
-        return Arrays.equals(s1,t1);
+        return true;
     }
 }
