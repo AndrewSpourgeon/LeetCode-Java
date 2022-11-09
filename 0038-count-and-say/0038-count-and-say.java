@@ -3,11 +3,13 @@ class Solution {
         if(n == 1){
             return "1";
         }
+        //call the number of times of n recursively
         String temp = countAndSay(n-1);
         String ans = say(temp);
         return ans;
     }
     
+    //say the count of number
     private String say(String s){
         if(s.length() == 1) return "1" + s;
         int count = 1;
