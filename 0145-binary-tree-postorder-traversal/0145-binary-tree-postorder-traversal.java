@@ -14,57 +14,58 @@
  * }
  */
 class Solution {
-//     public List<Integer> postorderTraversal(TreeNode root) {
-//         List<Integer> postOrderList = new ArrayList<>();
-//         Stack<TreeNode> stack = new Stack<TreeNode>();
-//         while(true){
-//             if(root != null){
-//                 stack.push(root);
-//                 root = root.left;
-//             }
-//             else{
-//                 if(stack.empty()){
-//                     break;
-//                 }
-//                     TreeNode temp = stack.peek();
-//                     if(temp.right == null || postOrderList.contains(temp.right.val)){
-//                         stack.pop();
-//                         postOrderList.add(temp.val);
-//                         root = null;
-//                     }
-//                     else{
-//                         root = temp.right;
-//                     }
-                    
-//                 }
-//             }
-//         return postOrderList;
-//         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> postOrderList = new ArrayList<>();
-        postOrderRecursion(root ,postOrderList);
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while(root != null || !stack.empty()){
+            if(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            else{
+                    TreeNode temp = stack.peek().right;
+                    if(temp == null){
+                        temp = stack.peek();
+                        stack.pop();
+                        postOrderList.add(temp.val);
+                        while(!stack.empty() && temp == stack.peek().right){
+                            temp = stack.pop();
+                            postOrderList.add(temp.val);
+                        }
+                    }
+                    else{
+                        root = temp;
+                    }
+                    
+                }
+            }
         return postOrderList;
-    }
-    
-    private void postOrderRecursion(TreeNode root , List<Integer> postorderList){
-        if(root == null){
-            return;
         }
-        postOrderRecursion(root.left,postorderList);
-        postOrderRecursion(root.right,postorderList);
-        postorderList.add(root.val);
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    }
+    
+//     public List<Integer> postorderTraversal(TreeNode root) {
+//         List<Integer> postOrderList = new ArrayList<>();
+//         postOrderRecursion(root ,postOrderList);
+//         return postOrderList;
+//     }
+    
+//     private void postOrderRecursion(TreeNode root , List<Integer> postorderList){
+//         if(root == null){
+//             return;
+//         }
+//         postOrderRecursion(root.left,postorderList);
+//         postOrderRecursion(root.right,postorderList);
+//         postorderList.add(root.val);
+
+//     }
     
 }
