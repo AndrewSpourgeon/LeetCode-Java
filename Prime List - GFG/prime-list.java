@@ -73,19 +73,20 @@ class Solution
             else{
                 int left = val-1;
                 int right = val+1;
-                while(!isPrime(left) && !isPrime(right)){
+                while(!isPrime(left)){
                     left--;
+                }
+                while(!isPrime(right)){
                     right++;
                 }
-                
-                if(isPrime(left) && isPrime(right)){
-                    head.val = left;
+                if(Math.abs(val-left) > Math.abs(val-right)){
+                    head.val = right;
                 }
-                else if(isPrime(left)){
+                else if(Math.abs(val-left) < Math.abs(val-right)){
                     head.val = left;
                 }
                 else{
-                    head.val = right;
+                    head.val = left;
                 }
                 head = head.next;
             }
@@ -93,11 +94,29 @@ class Solution
         return ans;
         
     }
-    public boolean isPrime(int val){
-        if(val == 0 || val == 1) return false;
-        for(int i = 2 ; i <= Math.sqrt(val) ; i++){
-            if(val%i == 0) return false;
-        }
+    public boolean isPrime(int n){
+        if (n == 1)
+
+        return false;
+
+    if (n == 2 || n == 3)
+
         return true;
+
+    if (n % 2 == 0 || n % 3 == 0)
+
+        return false;
+
+    for (int i = 5; i <= Math.sqrt(n); i += 6)
+
+    {
+
+        if (n % i == 0 || n % (i + 2) == 0)
+
+            return false;
+
+    }
+
+    return true;
     }
 }
