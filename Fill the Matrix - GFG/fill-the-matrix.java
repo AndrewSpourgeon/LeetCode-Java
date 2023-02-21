@@ -13,27 +13,42 @@ class Solution
 		//code here
 		if(N == 1 && M == 1)return 0;
 		int ans = 0;
-		int[][] vis = new int[N][M];
-		int[][] dir = {{1,0},{0,1},{-1,0},{0,-1}};
-		int[] pair = new int[3];
-		pair[0] = x-1 ; pair[1] = y-1 ; pair[2] = 0;
-		Queue<int[]> queue = new LinkedList<>();
-		queue.add(pair);
-		vis[x-1][y-1] = 1;
 		
-		while(!queue.isEmpty()){
-		    int[] temp = queue.poll();
-		    ans = Math.max(ans,temp[2]);
-		    for(int i = 0 ; i < 4 ; i++){
-		        int nextX = temp[0] + dir[i][0];
-		        int nextY = temp[1] + dir[i][1];
-		        if(nextX >= 0 && nextX < N && nextY >= 0 && nextY < M && vis[nextX][nextY] != 1){
-		            vis[nextX][nextY] = 1;
-		            queue.add(new int[]{nextX,nextY,temp[2]+1});
-		        }
-		    }
-		}
+		int start = x-1,end = y -1;
+		
+		//top left 
+		ans = Math.max(ans , start+end);
+		//bottom left
+		ans = Math.max(ans , (N-(start+1))+end);
+		//top right
+		ans = Math.max(ans , start + (M-(end+1)));
+		// bottom right
+		ans = Math.max(ans,(N-(start+1))+(M-(end+1)));
+		
 		return ans;
+		
+		
+// 		int[][] vis = new int[N][M];
+// 		int[][] dir = {{1,0},{0,1},{-1,0},{0,-1}};
+// 		int[] pair = new int[3];
+// 		pair[0] = x-1 ; pair[1] = y-1 ; pair[2] = 0;
+// 		Queue<int[]> queue = new LinkedList<>();
+// 		queue.add(pair);
+// 		vis[x-1][y-1] = 1;
+		
+// 		while(!queue.isEmpty()){
+// 		    int[] temp = queue.poll();
+// 		    ans = Math.max(ans,temp[2]);
+// 		    for(int i = 0 ; i < 4 ; i++){
+// 		        int nextX = temp[0] + dir[i][0];
+// 		        int nextY = temp[1] + dir[i][1];
+// 		        if(nextX >= 0 && nextX < N && nextY >= 0 && nextY < M && vis[nextX][nextY] != 1){
+// 		            vis[nextX][nextY] = 1;
+// 		            queue.add(new int[]{nextX,nextY,temp[2]+1});
+// 		        }
+// 		    }
+// 		}
+// 		return ans;
 	}
 }
 
