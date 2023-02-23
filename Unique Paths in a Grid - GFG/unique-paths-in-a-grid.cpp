@@ -18,13 +18,7 @@ class Solution {
         int mod = 1000000000 + 7;
         return (int)(Solution::solve(0, 0, n, m, grid, dp) % mod);
     }
-    static long solve(
-    int i,
-    int j,
-    int n,
-    int m,
-    std::vector<std::vector<int>> &grid,
-    std::vector<std::vector<long>> &dp)
+    static long solve(int i,int j,int n,int m,std::vector<std::vector<int>> &grid,std::vector<std::vector<long>> &dp)
     {
         if (i == n - 1 && j == m - 1)
         {
