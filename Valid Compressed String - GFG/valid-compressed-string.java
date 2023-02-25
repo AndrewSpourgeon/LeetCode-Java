@@ -32,8 +32,6 @@ class Solution {
         }
         int i = 0 , j = 0;
         while(i < n && j < m){
-            // System.out.println(i);
-            // System.out.println(j);
             boolean isNum = Character.isDigit(T.charAt(j));
             if(isNum){
                 int prevJ = j;
