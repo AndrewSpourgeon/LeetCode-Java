@@ -39,43 +39,43 @@ class Solution {
         boolean[] vis = new boolean[V];
         for(int i = 0 ; i < V ; i++){
             if(!vis[i]){
-                if(bfs(i,-1,adj,vis)) return true;
+                if(dfs(i,-1,adj,vis)) return true;
             }
         }
         return false;
     }
     
-    // public boolean dfs(int node,int parent,ArrayList<ArrayList<Integer>> adj,boolean[] vis){
-    //     vis[node] = true;
-    //     for(int child : adj.get(node)){
-    //         if(!vis[child]){
-    //             return dfs(child,node,adj,vis);
-    //         }
-    //         else if(child != parent){
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-    public boolean bfs(int node,int parent,ArrayList<ArrayList<Integer>> adj,boolean[] vis){
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{node,parent});
+    public boolean dfs(int node,int parent,ArrayList<ArrayList<Integer>> adj,boolean[] vis){
         vis[node] = true;
-        
-        while(!queue.isEmpty()){
-            int cur = queue.peek()[0] , par = queue.peek()[1];
-            queue.poll();
-            for(int child : adj.get(cur)){
-                if(!vis[child]){
-                    queue.add(new int[]{child,cur});
-                    vis[child] = true;
-                }
-                else if(child != par){
-                    return true;
-                }
+        for(int child : adj.get(node)){
+            if(!vis[child]){
+                if(dfs(child,node,adj,vis)) return true;
+            }
+            else if(child != parent){
+                return true;
             }
         }
         return false;
     }
+    // public boolean bfs(int node,int parent,ArrayList<ArrayList<Integer>> adj,boolean[] vis){
+    //     Queue<int[]> queue = new LinkedList<>();
+    //     queue.add(new int[]{node,parent});
+    //     vis[node] = true;
+        
+    //     while(!queue.isEmpty()){
+    //         int cur = queue.peek()[0] , par = queue.peek()[1];
+    //         queue.poll();
+    //         for(int child : adj.get(cur)){
+    //             if(!vis[child]){
+    //                 queue.add(new int[]{child,cur});
+    //                 vis[child] = true;
+    //             }
+    //             else if(child != par){
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
     
 }
