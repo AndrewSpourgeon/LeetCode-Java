@@ -44,27 +44,23 @@ class Solution
         Arrays.fill(color,-1);
         for(int i = 0 ; i < V ; i++){
             if(color[i] == -1){
+                color[i] = 1;
                 if(solve(i,adj,color) == false) return false;
             }
         }
         return true;
     }
-    public boolean solve(int i , ArrayList<ArrayList<Integer>>adj , int[] color ){
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(i);
-        color[i] = 1;
-        while(!queue.isEmpty()){
-            int node = queue.poll();
-            for(int child : adj.get(node)){
-                if(color[child] == -1){
-                    color[child] = color[node] == 1 ? 0 : 1;
-                    queue.add(child);
-                }
-                else if(color[child] == color[node]){
-                    return false;
-                }
+    public boolean solve(int node , ArrayList<ArrayList<Integer>>adj , int[] color ){
+        boolean ans = true;
+        for(int child : adj.get(node)){
+            if(color[child] == -1){
+                color[child] = color[node] == 1 ? 0 : 1;
+                ans = ans && solve(child,adj,color);
+            }
+            else if(color[child] == color[node]){
+                return false;
             }
         }
-        return true;
+        return ans;
     }
 }
