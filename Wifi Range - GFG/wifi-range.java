@@ -30,24 +30,24 @@ class Solution
     boolean wifiRange(int N, String S, int X) 
     { 
         // code here
-        boolean[] dp = new boolean[N];
+        StringBuilder sb = new StringBuilder(S);
         for(int i = 0 ; i < N ; i++){
             if(S.charAt(i) == '1'){
-                dp[i] = true;
                 int left = i-X , right = i + X , j = i;
                 while(j >= left && j >= 0){
-                    dp[j] = true;
+                    sb.setCharAt(j,'2');
                     j--;
                 }
                 j = i;
                 while(j <= right && j < N){
-                    dp[j] = true;
+                    sb.setCharAt(j,'2');
                     j++;
                 }
             }
         }
-        for(boolean val : dp){
-            if(!val) return false;
+        String s1 = sb.toString();
+        for(int i = 0 ; i < N ; i++){
+            if(s1.charAt(i) == '0') return false;
         }
         return true;
     }
