@@ -49,7 +49,10 @@ class Solution{
            } else {
                while(!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
                    int topIdx = stack.pop();
-                   if(res[topIdx] == -1 || topIdx-res[topIdx] > i-topIdx || (topIdx-res[topIdx] == i-topIdx && arr[i] < arr[res[topIdx]])) {
+                   if(res[topIdx] == -1 || 
+                   topIdx-res[topIdx] > i-topIdx || 
+                   (topIdx-res[topIdx] == i-topIdx && 
+                   arr[i] < arr[res[topIdx]])) {
                        res[topIdx] = i;
                    }
                }
