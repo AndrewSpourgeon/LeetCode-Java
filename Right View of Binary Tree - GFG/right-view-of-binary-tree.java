@@ -132,22 +132,21 @@ class Solution{
     //Function to return list containing elements of right view of binary tree.
     ArrayList<Integer> rightView(Node node) {
         //add code here.
-      ArrayList<Integer> ans = new ArrayList<Integer>();
-      if(node == null) return ans;
-      rightOrder(node,0,ans);
-      return ans;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        solve(node,map,0);
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(int i=0;i < map.size();i++){
+            ans.add(map.get(i));
+        }
+        return ans;
     }
-    
-    private void rightOrder(Node root , int level , ArrayList<Integer> ans){
-        if(root == null){
-            return;
+    void solve(Node node,HashMap<Integer,Integer> map,int level){
+        if(node == null) return;
+        if(!map.containsKey(level)){
+            map.put(level,node.data);
         }
-        if(level == ans.size()){
-            ans.add(root.data);
-        }
-        rightOrder(root.right , level+1 , ans);
-        rightOrder(root.left , level+1 , ans);
-        
+        solve(node.right,map,level+1);
+        solve(node.left,map,level+1);
     }
 }
 
